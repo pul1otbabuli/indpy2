@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Добавить дело</title>
+</head>
+<body>
+    <h1>Добавить новое дело</h1>
+    <form action="/cases" method="post">
+        <label for="case_number">Номер дела:</label><br>
+        <input type="text" id="case_number" name="case_number" required><br><br>
+        <label for="opening_date">Дата открытия:</label><br>
+        <input type="date" id="opening_date" name="opening_date" required><br><br>
+        <label for="description">Описание:</label><br>
+        <textarea id="description" name="description"></textarea><br><br>
+        <input type="submit" value="Сохранить">
+    </form>
+    <p><a href="/">На главную</a></p>
+</body>
+</html>
