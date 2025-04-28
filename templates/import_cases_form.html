@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Импорт дел из XML</title>
+</head>
+<body>
+    <h1>Импорт дел из XML</h1>
+    <form action="/import/cases" method="post" enctype="multipart/form-data">
+        <label for="xml_file">Выберите XML файл:</label><br><br>
+        <input type="file" name="xml_file" accept=".xml" required><br><br>
+        <input type="submit" value="Импортировать">
+    </form>
+    <p><a href="/">На главную</a></p>
+</body>
+</html>
