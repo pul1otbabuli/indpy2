@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Добавить сторону</title>
+</head>
+<body>
+    <h1>Добавить новую сторону</h1>
+    <form action="/parties" method="post">
+        <label for="case_id">ID дела:</label><br>
+        <input type="number" id="case_id" name="case_id" required><br><br>
+        <label for="name">Имя:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
+        <label for="role">Роль (Истец/Ответчик):</label><br>
+        <input type="text" id="role" name="role" required><br><br>
+        <label for="contact_info">Контактная информация:</label><br>
+        <input type="text" id="contact_info" name="contact_info"><br><br>
+        <input type="submit" value="Сохранить">
+    </form>
+    <p><a href="/">На главную</a></p>
+</body>
+</html>
