@@ -99,7 +99,7 @@ async def create_judge_form(request: Request):
 async def export_cases(db: sqlite3.Connection = Depends(get_db)):
     cursor = db.execute("SELECT * FROM Cases")
     cases_data = cursor.fetchall()
-  root = etree.Element("cases")
+    root = etree.Element("cases")
     for case in cases_data:
         case_element = etree.SubElement(root, "case")
         etree.SubElement(case_element, "case_id").text = str(case[0])
@@ -109,6 +109,7 @@ async def export_cases(db: sqlite3.Connection = Depends(get_db)):
 
     xml_content = etree.tostring(root, pretty_print=True, encoding="UTF-8").decode()
     return HTMLResponse(content=f"<pre>{xml_content}</pre>", status_code=200)
+
 
 # Импорт таблицы "Дела" из XML
 @app.post("/import/cases", response_class=HTMLResponse)
@@ -124,11 +125,13 @@ async def import_cases(request: Request, db: sqlite3.Connection = Depends(get_db
             case_number = case_element.xpath("./case_number/text()")[0]
             opening_date = case_element.xpath("./opening_date/text()")[0]
             description = case_element.xpath("./description/text()")[0]
-            cursor.execute("INSERT INTO Cases (case_id, case_number, opening_date, description) VALUES (?, ?, ?, ?)", (case_id, case_number, opening_date, description))
+            cursor.execute("INSERT INTO Cases (case_id, case_number, opening_date, description) VALUES (?, ?, ?, ?)",
+                           (case_id, case_number, opening_date, description))
         db.commit()
         return HTMLResponse(content="Таблица 'Дела' успешно импортирована", status_code=200)
     except Exception as e:
         return HTMLResponse(content=f"Ошибка импорта XML: {e}", status_code=400)
+
 
 @app.get("/import/cases/form", response_class=HTMLResponse)
 async def import_cases_form(request: Request):
